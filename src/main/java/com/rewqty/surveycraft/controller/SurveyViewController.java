@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 public class SurveyViewController {
     @Autowired
@@ -17,13 +19,13 @@ public class SurveyViewController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("appName", "Сентябрь горит");
-        model.addAttribute("questions", surveyService.getAllQuestions());
+        model.addAttribute("surveys", surveyService.getAllSurveys());
         return "survey";
     }
 
-    @ResponseBody
     @RequestMapping(path = "/survey/{id}", method = RequestMethod.GET)
-    public String single(@PathVariable("id") Long id) {
-        return "Здесь будет страница опроса №" + id;
+    public String single(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("survey", surveyService.getAllSurveys().get(1));
+        return "takeSurvey";
     }
 }

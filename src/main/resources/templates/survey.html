@@ -11,12 +11,18 @@
     <h1 th:text="${appName}" style="color: green">Default app name</h1>
     <hr/>
     <div class="content">
-        <div class="list-group" th:each="question : ${questions}">
+        <div class="list-group" th:each="survey : ${surveys}">
             <div class="col-md-11 description">
-                <p class="description-text" th:text="${question.question}">Text</p>
+                <p class="description-text" th:text="${'Survey: ' + survey.title}">Text</p>
             </div>
-            <div class="col-md-1">
-                <p class="description-text" th:text="${question.answer}">Text</p>
+            <div class="list-group" th:each="question: ${survey.questions}">
+                <div class="col-md-11 description">
+                    <p class="description-text" th:text="${'Question: ' + question.question}">Text</p>
+                    <p class="description-text" th:text="${'Type: ' + question.typeQuestion}">Text</p>
+                </div>
+                <div class="list-group" th:each="answer : ${question.answers}">
+                    <p class="description-text" th:text="${'Answer: ' + answer.answer}">Text</p>
+                </div>
             </div>
             <div class="col-md-12">
                 <hr/>

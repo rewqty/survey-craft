@@ -1,19 +1,29 @@
 package com.rewqty.surveycraft.model;
 
+import java.util.List;
+
 public class Survey {
-    private String question;
-    private String answer;
+    private Long id;
+    private String title;
+    private List<Question> questions;
 
-    public Survey(String question, String answer) {
-        this.question = question;
-        this.answer = answer;
+    public Survey(){}
+
+    public Survey(Long id, String title, List<Question> questions) {
+        this.id = id;
+        this.title = title;
+        this.questions = questions;
     }
 
-    public String getQuestion() {
-        return question;
+    public Long getId() {
+        return id;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getTitle() {
+        return title;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
     }
 }
